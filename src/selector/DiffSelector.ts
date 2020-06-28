@@ -2,9 +2,9 @@ import {createSelector} from 'reselect';
 import {GlobalState} from '../GlobalState';
 import {GlobalStateSelector} from './GlobalStateSelector';
 
-interface DiffModel<T, ID> {
-  id: ID;
-  oldValue: T;
+export interface DiffModel<T, ID> {
+  id?: ID;
+  oldValue?: T;
   newValue: T;
 }
 
@@ -28,8 +28,6 @@ export class DiffSelector<G, T, ID> extends GlobalStateSelector<G> {
         }
       }
       const d: DiffModel<T, ID> = {
-        id: null,
-        oldValue: null,
         newValue: null
       };
       return d;
