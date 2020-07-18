@@ -4,8 +4,8 @@ import {ViewListGlobalStateSelector} from './ViewListGlobalStateSelector';
 
 export interface DiffModel<T, ID> {
   id?: ID;
-  oldValue?: T;
-  newValue: T;
+  origin?: T;
+  value: T;
 }
 
 export class ViewListDiffGlobalStateSelector<G, T, ID> extends ViewListGlobalStateSelector<G, T> {
@@ -20,15 +20,14 @@ export class ViewListDiffGlobalStateSelector<G, T, ID> extends ViewListGlobalSta
         const diff = globalState[this.diffFormName];
         if (diff) {
           const result = {
-            id: diff.id || '',
-            oldValue: diff.oldValue,
-            newValue: diff.newValue,
+            origin: diff.origin,
+            value: diff.value,
           };
           return result;
         }
       }
       const d: DiffModel<T, ID> = {
-        newValue: null
+        value: null
       };
       return d;
     }

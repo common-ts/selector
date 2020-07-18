@@ -4,8 +4,8 @@ import {GlobalStateSelector} from './GlobalStateSelector';
 
 export interface DiffModel<T, ID> {
   id?: ID;
-  oldValue?: T;
-  newValue: T;
+  origin?: T;
+  value: T;
 }
 
 export class DiffSelector<G, T, ID> extends GlobalStateSelector<G> {
@@ -21,14 +21,14 @@ export class DiffSelector<G, T, ID> extends GlobalStateSelector<G> {
         if (diff) {
           const result = {
             id: diff.id || '',
-            oldValue: diff.oldValue,
-            newValue: diff.newValue,
+            origin: diff.origin,
+            value: diff.value,
           };
           return result;
         }
       }
       const d: DiffModel<T, ID> = {
-        newValue: null
+        value: null
       };
       return d;
     }
