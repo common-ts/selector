@@ -20,9 +20,9 @@ export interface ReduxState<G, F> extends GlobalState<G> {
 }
 
 export interface DiffModel<T, ID> {
-  id: ID;
-  oldValue: T;
-  newValue: T;
+  id?: ID;
+  origin?: T;
+  value: T;
 }
 
 export class GlobalStateSelector<G> {
@@ -45,18 +45,15 @@ export class DiffSelector<G, T, ID> extends GlobalStateSelector<G> {
       if (globalState) {
         const diff = globalState[this.diffFormName];
         if (diff) {
-          const result = {
-            id: diff.id || '',
-            oldValue: diff.oldValue,
-            newValue: diff.newValue,
+          const result: DiffModel<T, ID> = {
+            origin: diff.origin,
+            value: diff.value,
           };
           return result;
         }
       }
       const d: DiffModel<T, ID> = {
-        id: null,
-        oldValue: null,
-        newValue: null
+        value: null
       };
       return d;
     }
@@ -127,18 +124,15 @@ export class ViewListDiffGlobalStateSelector<G, T, ID> extends ViewListGlobalSta
       if (globalState) {
         const diff = globalState[this.diffFormName];
         if (diff) {
-          const result = {
-            id: diff.id || '',
-            oldValue: diff.oldValue,
-            newValue: diff.newValue,
+          const result: DiffModel<T, ID> = {
+            origin: diff.origin,
+            value: diff.value,
           };
           return result;
         }
       }
       const d: DiffModel<T, ID> = {
-        id: null,
-        oldValue: null,
-        newValue: null
+        value: null
       };
       return d;
     }
