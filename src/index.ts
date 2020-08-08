@@ -46,7 +46,6 @@ export class DiffSelector<G, T, ID> extends GlobalStateSelector<G> {
         const diff = globalState[this.diffFormName];
         if (diff) {
           const result = {
-            id: diff.id || '',
             origin: diff.origin,
             value: diff.value,
           };
@@ -126,6 +125,7 @@ export class ViewListDiffGlobalStateSelector<G, T, ID> extends ViewListGlobalSta
         const diff = globalState[this.diffFormName];
         if (diff) {
           const result = {
+            origin: diff.origin,
             value: diff.value,
           };
           return result;
