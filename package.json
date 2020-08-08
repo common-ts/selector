@@ -25,5 +25,8 @@
   "keywords": [
     "reselect",
     "reselect-plus"
-  ]
+  ],
+  "dependencies": {
+    "reselect": "^3.0.1"
+  }
 }
